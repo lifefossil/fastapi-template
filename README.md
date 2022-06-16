@@ -1,5 +1,4 @@
 # 模板使用说明
----
 ## 安装
 模板拷贝到本地后, 运行下面命令安装依赖(最好新建虚拟环境)
 ```shell
@@ -44,7 +43,7 @@ visit: http://127.0.0.1:8000/docs
 |   |
 |   - util    # 工具
 |   |
-|   - main.py   # 项目入口
+|   - router.py   # 项目入口
 |
 - application.yaml    # 项目配置文件, 配置参数参考: docs/config/application.md
 |

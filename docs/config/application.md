@@ -4,7 +4,7 @@ application.yaml 配置参数:
 ```yaml
 app:
   env: dev
-  entry: src/main.py
+  entry: src/router.py
   oss:
     access_key: xxx
     secret_key: xxx

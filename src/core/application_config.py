@@ -28,7 +28,7 @@ class Oss:
 
 class App:
     env: str | None = None
-    entry: str = 'src/main.py'
+    entry: str = 'src/router.py'
 
     def __init__(self, _dict: dict | None):
         if _dict:

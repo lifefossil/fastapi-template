@@ -1,5 +1,8 @@
 from typing import List
 from pydantic import BaseModel
+from fastapi import APIRouter
+
+router = APIRouter()
 
 
 class Login(BaseModel):
@@ -8,6 +11,7 @@ class Login(BaseModel):
     user: List[int]
 
 
+@router.get('/index')
 def index(age: int = 80):
     return {"fun": "/index", "age": age}
 
