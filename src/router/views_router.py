@@ -1,9 +1,7 @@
 from fastapi import APIRouter
-from starlette.responses import HTMLResponse
+from src.controller.views.biz import router as biz_router
 
-from src.controller.views.home import home
+view_router = APIRouter(tags=["view router"])
 
-ViewsRouter = APIRouter()
+view_router.include_router(biz_router)
 
-
-ViewsRouter.get("/items/{id}", response_class=HTMLResponse)(home)

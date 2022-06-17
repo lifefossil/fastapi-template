@@ -4,7 +4,7 @@ from src.controller.api.login import router as login_router
 from src.controller.api.login import login
 
 
-api_router = APIRouter(prefix="/v1", tags=["api路由"])
+api_router = APIRouter(prefix="/api", tags=["api路由"])
 
 # 通过注解引入
 api_router.include_router(login_router)

@@ -4,21 +4,11 @@ app:
     # 如果引入外部文件的配置与本文件冲突, 最终以本文件的配置为主.
     # 引入外部配置文件主要为了防止在项目对外的时候暴露敏感数据
     # 默认值为: None
-    include: ~/fastapi/application.yaml
+    include: ~/.oliver/pproject/application.yaml
 
 
 # 数据源设置
 datasource:
-    mysql:
-        driver: mysqlclient
-        username: xxx
-        password: xxx
-        host: xxx
-        port: xxx
-        database: xxx
-        encode: utf-8
-        timezone: Asia/Shanghai
-        unicode: True
     mongodb:
         host: xxx
         port: xxx

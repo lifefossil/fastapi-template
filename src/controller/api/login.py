@@ -11,7 +11,7 @@ class Login(BaseModel):
     user: List[int]
 
 
-@router.get('/index')
+@router.get('/index', summary="")
 def index(age: int = 80):
     return {"fun": "/index", "age": age}
 

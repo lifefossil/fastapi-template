@@ -8,6 +8,7 @@ from src.router.router import AllRouter
 from src.core.events import startup, stopping
 from src.exception.Exception import http_error_handler, http422_error_handler, unicorn_exception_handler, UnicornException
 from src.middleware.fastapi_middleware import Middleware
+from fastapi.templating import Jinja2Templates
 
 # 初始化项目
 application = FastAPI(
@@ -50,6 +51,9 @@ application.add_middleware(
 )
 
 # 静态资源目录
-application.mount('/static', StaticFiles(directory=settings.STATIC_DIR))
+application.mount('/static', StaticFiles(directory=settings.STATIC_DIR), name="static")
+# 将模板注册到全集
+application.state.views = Jinja2Templates(directory=settings.TEMPLATE_DIR)
+
 
 app = application
