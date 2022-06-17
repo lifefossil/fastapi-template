@@ -1,4 +1,44 @@
+app:
+    # 默认值为: dev
+    env: dev
+    # 如果引入外部文件的配置与本文件冲突, 最终以本文件的配置为主.
+    # 引入外部配置文件主要为了防止在项目对外的时候暴露敏感数据
+    # 默认值为: None
+    include: ~/fastapi/application.yaml
 
 
+# 数据源设置
+datasource:
+    mysql:
+        driver: mysqlclient
+        username: xxx
+        password: xxx
+        host: xxx
+        port: xxx
+        database: xxx
+        encode: utf-8
+        timezone: Asia/Shanghai
+        unicode: True
+    mongodb:
+        host: xxx
+        port: xxx
+        database: xxx
+        authentication-database: xxx
+        username: xxx
+        password: xxx
+    redis:
+        database: 0
+        host: xxx
+        port: xxx
+        password: xxx
 
-
+# 生产环境
+# 如果 app.env: dev 着该配置不生效, 如果为prod, 则配置生效,且覆盖上面的配置信息
+prod:
+    datasource:
+        mysql:
+            host: ooo
+            password: xoxo
+        redis:
+            host: ooo
+            password: xoxo

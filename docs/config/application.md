@@ -2,9 +2,9 @@
 ---
 application.yaml 配置参数:
 ```yaml
+include: xxx
 app:
   env: dev
-  entry: src/router.py
   oss:
     access_key: xxx
     secret_key: xxx
