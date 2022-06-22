@@ -7,7 +7,7 @@
 
 from typing import Callable
 from fastapi import FastAPI
-
+from src.database.mysqldb import register_mysql
 
 def startup(app: FastAPI) -> Callable:
     """
@@ -18,6 +18,7 @@ def startup(app: FastAPI) -> Callable:
     async def app_start() -> None:
         # APP启动完成后触发
         print("启动完毕")
+        await register_mysql(app)
         pass
     return app_start
 

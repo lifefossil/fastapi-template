@@ -8,27 +8,26 @@ app:
 
 
 # 数据源设置
-datasource:
-    mongodb:
-        host: xxx
-        port: xxx
-        database: xxx
-        authentication-database: xxx
-        username: xxx
-        password: xxx
-    redis:
-        database: 0
-        host: xxx
-        port: xxx
-        password: xxx
+#datasource:
+#    mysql:
+#        name: default
+#        driver: xxx
+#        username: root
+#        password: xxx
+#        host: localhost
+#        port: 3306
+#        database: test
+#        encode: utf-8
+#        timezone: Asia/Shanghai
+#        unicode: True
 
 # 生产环境
 # 如果 app.env: dev 着该配置不生效, 如果为prod, 则配置生效,且覆盖上面的配置信息
-prod:
-    datasource:
-        mysql:
-            host: ooo
-            password: xoxo
-        redis:
-            host: ooo
-            password: xoxo
+#prod:
+#    datasource:
+#        mysql:
+#            host: ooo
+#            password: xoxo
+#        redis:
+#            host: ooo
+#            password: xoxo

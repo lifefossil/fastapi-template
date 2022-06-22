@@ -22,21 +22,16 @@ class Mysqldb:
             self.__dict__.update(_dict)
 
 
-def _parse(c: dict) -> dict[str, Mysqldb]:
-    mysqldb = Mysqldb(c)
-    return {mysqldb.name: mysqldb}
-
-
-def get_all_mysql_config() -> list[dict[str, Mysqldb]]:
-    result = list()
+def get_all_mysql_config() -> dict[str, Mysqldb]:
+    result: dict[str, Mysqldb] = dict()
     try:
         mysqls = appconfig.config.get('datasource').get('mysql')
         if mysqls and isinstance(mysqls, dict):
-            result.append(_parse(mysqls))
+            result[mysqls.get('name')] = Mysqldb(mysqls)
             return result
         if mysqls and isinstance(mysqls, list):
             for mysql in mysqls:
-                result.append(_parse(mysql))
+                result[mysql.get('name')] = Mysqldb(mysql)
             return result
     except Exception as e:
         pass
@@ -47,6 +42,4 @@ mysqlconfig = get_all_mysql_config()
 
 if __name__ == '__main__':
     result = get_all_mysql_config()
-    for item in result:
-        for k, v in item.items():
-            print(k, v.host)
+    print(result.get('default').host)

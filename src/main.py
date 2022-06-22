@@ -51,7 +51,7 @@ application.add_middleware(
 )
 
 # 静态资源目录
-application.mount('/static', StaticFiles(directory=settings.STATIC_DIR), name="static")
+application.mount('/resources/static', StaticFiles(directory=settings.STATIC_DIR), name="static")
 # 将模板注册到全集
 application.state.views = Jinja2Templates(directory=settings.TEMPLATE_DIR)
 
