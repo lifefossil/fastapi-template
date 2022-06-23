@@ -8,6 +8,8 @@
 from typing import Callable
 from fastapi import FastAPI
 from src.database.mysqldb import register_mysql
+from src.database.redisdb import cache
+
 
 def startup(app: FastAPI) -> Callable:
     """
@@ -15,11 +17,13 @@ def startup(app: FastAPI) -> Callable:
     :param app: FastAPI
     :return: start_app
     """
+
     async def app_start() -> None:
         # APP启动完成后触发
         print("启动完毕")
         await register_mysql(app)
-        pass
+        app.state.cache = await cache.get_redis()
+
     return app_start
 
 
@@ -29,9 +33,10 @@ def stopping(app: FastAPI) -> Callable:
     :param app: FastAPI
     :return: stop_app
     """
+
     async def stop_app() -> None:
         # APP停止时触发
         print("停止")
-        pass
+        await cache.close_cache()
 
     return stop_app

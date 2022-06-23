@@ -6,9 +6,11 @@ from fastapicf import settings
 from fastapi.staticfiles import StaticFiles
 from src.router.router import AllRouter
 from src.core.events import startup, stopping
-from src.exception.Exception import http_error_handler, http422_error_handler, unicorn_exception_handler, UnicornException
+from src.exception.Exception import http_error_handler, http422_error_handler, unicorn_exception_handler, \
+    UnicornException
 from src.middleware.fastapi_middleware import Middleware
 from fastapi.templating import Jinja2Templates
+import uvicorn
 
 # 初始化项目
 application = FastAPI(
@@ -16,13 +18,11 @@ application = FastAPI(
     description=settings.DESCRIPTION,
     version=settings.VERSION,
     title=settings.PROJECT_NAME,
-    )
-
+)
 
 # 事件监听
 application.add_event_handler("startup", startup(application))
 application.add_event_handler("shutdown", stopping(application))
-
 
 # http异常错误处理
 application.add_exception_handler(HTTPException, http_error_handler)
@@ -38,9 +38,9 @@ application.include_router(AllRouter)
 application.add_middleware(Middleware)
 application.add_middleware(
     SessionMiddleware,
-    secret_key="session",
-    session_cookie="f_id",
-    # max_age=4
+    secret_key=settings.SECRET_KEY,
+    session_cookie=settings.SESSION_COOKIE,
+    max_age=settings.SESSION_MAX_AGE
 )
 application.add_middleware(
     CORSMiddleware,
@@ -55,5 +55,12 @@ application.mount('/resources/static', StaticFiles(directory=settings.STATIC_DIR
 # 将模板注册到全集
 application.state.views = Jinja2Templates(directory=settings.TEMPLATE_DIR)
 
-
 app = application
+
+
+def start():
+    """
+    Launched with `poetry run dev` at root level
+    :return: None
+    """
+    uvicorn.run("src.main:app", host="0.0.0.0", port=8000, reload=True)

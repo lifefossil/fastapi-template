@@ -1,14 +1,16 @@
 # 模板使用说明
 ## 安装
-模板拷贝到本地后, 运行下面命令安装依赖(最好新建虚拟环境)
+该项目采用 `poetry` 管理项目依赖和虚拟环境, 将项目拉取到本地后:
 ```shell
 > cd fastapi-template
 # 创建虚拟环境
 > python -m venv venv
 # 激活虚拟环境
 > venv/Script/active
-# 安装依赖
-> pip install -r requirements.txt
+# 安装 `poetry`
+> pip install poetry
+# 安装项目依赖
+> poetry install
 ```
 
 ## 配置数据库
@@ -60,7 +62,7 @@ print(mysqlconfig.get('db1').host)
 ```
 ## 运行项目
 ```shell
-> uvicorn src.main:app --reload  
+> poetry run dev 
 ```
 
 ## 访问项目
